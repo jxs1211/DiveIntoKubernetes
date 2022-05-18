@@ -10,7 +10,7 @@
 
 这一次，我要用 Docker 部署一个用 Python 编写的 Web 应用。这个应用的代码部分（app.py）非常简单：
 
-```
+```python
 
 from flask import Flask
 import socket
@@ -33,7 +33,6 @@ if __name__ == "__main__":
 这个应用的依赖，则被定义在了同目录下的 requirements.txt 文件里，内容如下所示：
 
 ```
-
 $ cat requirements.txt
 Flask
 ```
@@ -43,7 +42,6 @@ Flask
 不过，相较于我之前介绍的制作 rootfs 的过程，Docker 为你提供了一种更便捷的方式，叫作 Dockerfile，如下所示。
 
 ```dockerfile
-
 # 使用官方提供的Python开发镜像作为基础镜像
 FROM python:2.7-slim
 
@@ -71,7 +69,6 @@ CMD ["python", "app.py"]
 比如 FROM 原语，指定了“python:2.7-slim”这个官方维护的基础镜像，从而免去了安装 Python 等语言环境的操作。否则，这一段我们就得这么写了:
 
 ```dockerfile
-
 FROM ubuntu:latest
 RUN apt-get update -yRUN apt-get install -y python-pip python-dev build-essential
 ...

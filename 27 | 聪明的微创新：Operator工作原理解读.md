@@ -22,7 +22,6 @@ $ git clone https://github.com/coreos/etcd-operator
 不过，在部署 Etcd Operator 的 Pod 之前，你需要先执行这样一个脚本：
 
 ```
-
 $ example/rbac/create_role.sh
 ```
 
@@ -35,7 +34,6 @@ $ example/rbac/create_role.sh
 而 Etcd Operator 本身，其实就是一个 Deployment，它的 YAML 文件如下所示：
 
 ```yaml
-
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -67,14 +65,12 @@ spec:
 所以，我们就可以使用上述的 YAML 文件来创建 Etcd Operator，如下所示：
 
 ```
-
 $ kubectl create -f example/deployment.yaml
 ```
 
 而一旦 Etcd Operator 的 Pod 进入了 Running 状态，你就会发现，有一个 CRD 被自动创建了出来，如下所示：
 
 ```
-
 $ kubectl get pods
 NAME                              READY     STATUS      RESTARTS   AGE
 etcd-operator-649dbdb5cb-bzfzp    1/1       Running     0          20s
@@ -87,7 +83,6 @@ etcdclusters.etcd.database.coreos.com   2018-09-18T11:42:55Z
 这个 CRD 名叫etcdclusters.etcd.database.coreos.com 。你可以通过 kubectl describe 命令看到它的细节，如下所示：
 
 ```
-
 $ kubectl describe crd  etcdclusters.etcd.database.coreos.com
 ...
 Group:   etcd.database.coreos.com
@@ -213,7 +208,6 @@ $ etcd --name infra2 --initial-advertise-peer-urls http://10.0.1.12:2380 \
 
 // +genclient
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
-
 type EtcdCluster struct {
   metav1.TypeMeta   `json:",inline"`
   metav1.ObjectMeta `json:"metadata,omitempty"`

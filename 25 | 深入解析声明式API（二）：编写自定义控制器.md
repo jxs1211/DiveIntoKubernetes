@@ -129,7 +129,7 @@ func NewController(
 
 接下来，我们就来到了示意图中最后面的控制循环（Control Loop）部分，也正是我在 main 函数最后调用 controller.Run() 启动的“控制循环”。它的主要内容如下所示：
 
-```
+```go
 func (c *Controller) Run(threadiness int, stopCh <-chan struct{}) error {
  ...
   if ok := cache.WaitForCacheSync(stopCh, c.networksSynced); !ok {
